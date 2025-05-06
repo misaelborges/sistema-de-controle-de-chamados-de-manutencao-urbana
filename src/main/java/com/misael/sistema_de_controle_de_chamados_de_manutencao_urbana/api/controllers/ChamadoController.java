@@ -16,6 +16,12 @@ public class ChamadoController {
     @Autowired
     private ChamadoService chamadoService;
 
+    @GetMapping("/chamado/{id}")
+    public ChamadoResponseDTO buscarChamadoPorId(@PathVariable Long id) {
+        Chamado chamado = chamadoService.buscarChamadoPorId(id);
+        return new ChamadoResponseDTO(chamado);
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ChamadoResponseDTO salvarChamado(@RequestBody @Valid ChamadoRequestDTO chamadoRequestDTO) {
