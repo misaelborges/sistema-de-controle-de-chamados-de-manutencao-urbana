@@ -17,6 +17,15 @@ public class ChamadoRequestDTO {
     @NotNull
     private CategoriaRequestDTO categoria;
 
+    public ChamadoRequestDTO() {
+    }
+
+    public ChamadoRequestDTO(String descricao, EnderecoRequestDTO endereco, CategoriaRequestDTO categoria) {
+        this.descricao = descricao;
+        this.endereco = endereco;
+        this.categoria = categoria;
+    }
+
     public String getDescricao() {
         return descricao;
     }

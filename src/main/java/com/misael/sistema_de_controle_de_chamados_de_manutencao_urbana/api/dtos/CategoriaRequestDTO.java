@@ -9,14 +9,14 @@ public class CategoriaRequestDTO {
     private CategoriaTipo categoriaTipo;
 
     @NotBlank
-    private String descricao;
+    private String descricaoTipo;
 
     public CategoriaRequestDTO() {
     }
 
-    public CategoriaRequestDTO(CategoriaTipo categoriaTipo, String descricao) {
+    public CategoriaRequestDTO(CategoriaTipo categoriaTipo, String descricaoTipo) {
         this.categoriaTipo = categoriaTipo;
-        this.descricao = descricao;
+        this.descricaoTipo = descricaoTipo;
     }
 
     public CategoriaTipo getCategoriaTipo() {
@@ -27,11 +27,11 @@ public class CategoriaRequestDTO {
         this.categoriaTipo = categoriaTipo;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoTipo() {
+        return descricaoTipo;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoTipo(String descricaoTipo) {
+        this.descricaoTipo = descricaoTipo;
     }
 }
