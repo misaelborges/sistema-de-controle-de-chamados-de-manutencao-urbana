@@ -1,5 +1,6 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models;
 
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoRequestDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,25 +26,20 @@ public class Chamado {
     private LocalDateTime dataResolucao;
 
     @Enumerated(EnumType.STRING)
-    private StatusChamado statusAtual;
+    private StatusChamado statusAtual = StatusChamado.ABERTO;
 
     private String comentarioServidor;
 
     @Embedded
-    private CategoriaRequestDTO categoria;
+    private CategoriaTipo categoria;
 
     public Chamado() {
     }
 
-    public Chamado(String descricao, Endereco endereco, LocalDateTime dataAbertura, LocalDateTime dataResolucao,
-                   StatusChamado statusAtual, String comentarioServidor, CategoriaRequestDTO categoria) {
-        this.descricao = descricao;
-        this.endereco = endereco;
-        this.dataAbertura = dataAbertura;
-        this.dataResolucao = dataResolucao;
-        this.statusAtual = statusAtual;
-        this.comentarioServidor = comentarioServidor;
-        this.categoria = categoria;
+    public Chamado(ChamadoRequestDTO chamadoRequestDTO) {
+        this.descricao = chamadoRequestDTO.getDescricao();
+        this.endereco = new Endereco(chamadoRequestDTO);
+        this.categoria = chamadoRequestDTO.getCategoria().getCategoriaTipo();
     }
 
     public String getDescricao() {
@@ -94,11 +90,11 @@ public class Chamado {
         this.comentarioServidor = comentarioServidor;
     }
 
-    public CategoriaRequestDTO getCategoria() {
+    public CategoriaTipo getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriaRequestDTO categoria) {
+    public void setCategoria(CategoriaTipo categoria) {
         this.categoria = categoria;
     }
 
