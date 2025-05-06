@@ -1,5 +1,7 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models;
 
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoRequestDTO;
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.EnderecoRequestDTO;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
@@ -17,6 +19,13 @@ public class Endereco {
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
+    }
+
+    public Endereco(ChamadoRequestDTO chamadoRequestDTO) {
+        this.rua = chamadoRequestDTO.getEndereco().getRua();
+        this.numero = chamadoRequestDTO.getEndereco().getNumero();
+        this.bairro = chamadoRequestDTO.getEndereco().getBairro();
+        this.cidade = chamadoRequestDTO.getEndereco().getCidade();
     }
 
     public String getRua() {
