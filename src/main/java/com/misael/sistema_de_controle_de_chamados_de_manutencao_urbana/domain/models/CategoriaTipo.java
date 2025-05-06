@@ -19,13 +19,13 @@ public enum CategoriaTipo {
     POSTE_QUEMADO("Poste quemado"),
     ALAGAMENTO("Alagamento");
 
-    private final String descricao;
+    private final String descricaoTipo;
 
-    CategoriaTipo(String descricao) {
-        this.descricao = descricao;
+    CategoriaTipo(String descricaoTipo) {
+        this.descricaoTipo = descricaoTipo;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoTipo() {
+        return descricaoTipo;
     }
 }
