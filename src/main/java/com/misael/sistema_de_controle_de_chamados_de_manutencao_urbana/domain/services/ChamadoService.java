@@ -1,6 +1,6 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.services;
 
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoSalvarCliente;
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoSalvarChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.repositories.IChamadoRepository;
 import jakarta.validation.UnexpectedTypeException;
@@ -17,7 +17,7 @@ public class ChamadoService {
         try {
             return chamadoRepository.save(chamado);
         } catch (UnexpectedTypeException e) {
-            throw new ErroAoSalvarCliente(
+            throw new ErroAoSalvarChamado(
                     "Erro ao salvar o clinete: Verifique se os campos não estão em branco.", e.getCause());
         }
     }
