@@ -30,7 +30,7 @@ public class Chamado {
 
     private String comentarioServidor;
 
-    @Embedded
+    @Enumerated(EnumType.STRING)
     private CategoriaTipo categoria;
 
     public Chamado() {
@@ -40,6 +40,10 @@ public class Chamado {
         this.descricao = chamadoRequestDTO.getDescricao();
         this.endereco = new Endereco(chamadoRequestDTO);
         this.categoria = chamadoRequestDTO.getCategoria().getCategoriaTipo();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getDescricao() {
