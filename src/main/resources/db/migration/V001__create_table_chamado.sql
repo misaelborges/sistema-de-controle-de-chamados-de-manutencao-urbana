@@ -9,6 +9,6 @@ create table chamado (
     data_resolucao datetime(6),
     status_atual enum ('ABERTO','EM_ANDAMENTO','RESOLVIDO'),
     comentario_servidor varchar(255),
-    descricao_tipo varchar(255),
+    categoria VARCHAR(255),
     primary key (id)
 ) engine=InnoDB;
