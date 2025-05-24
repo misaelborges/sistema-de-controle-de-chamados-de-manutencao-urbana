@@ -8,6 +8,8 @@ import jakarta.validation.UnexpectedTypeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChamadoService {
 
@@ -26,5 +28,9 @@ public class ChamadoService {
     public Chamado buscarChamadoPorId(Long id) {
         return chamadoRepository.findById(id).orElseThrow(
                 () -> new ErroAoEncontrarChamadoException("Não foi encontrado nenhum chamado com esse identificador"));
+    }
+
+    public List<Chamado> listarChamados() {
+        return chamadoRepository.listarChamados();
     }
 }
