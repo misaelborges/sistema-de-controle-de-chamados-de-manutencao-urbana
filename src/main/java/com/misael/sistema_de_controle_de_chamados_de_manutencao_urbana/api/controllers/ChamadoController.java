@@ -9,6 +9,7 @@ import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.mo
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.StatusChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.services.ChamadoService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,5 +99,14 @@ public class ChamadoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarChamado(@PathVariable Long id) {
         chamadoService.deletarChamado(id);
+    }
+
+    @PutMapping("/atualizarChamado/{id}")
+    public ChamadoResumoResponseDTO atualizarChamado(@PathVariable Long id, @RequestBody @Valid ChamadoRequestDTO chamadoRequestDTO) {
+        Chamado chamado = chamadoService.buscarChamadoPorId(id);
+        BeanUtils.copyProperties(chamadoRequestDTO, chamado, "id", "dataAbertura", "dataResolucao");
+
+        chamadoService.salvarChamado(chamado);
+        return new ChamadoResumoResponseDTO(chamado);
     }
 }
