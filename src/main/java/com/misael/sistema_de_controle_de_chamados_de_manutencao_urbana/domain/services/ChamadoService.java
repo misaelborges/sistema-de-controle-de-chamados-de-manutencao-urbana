@@ -1,5 +1,6 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.services;
 
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoDeletarChamadoException;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoEncontrarChamadoException;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoSalvarChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
@@ -54,5 +55,14 @@ public class ChamadoService {
 
     public List<Chamado> filtrarChamadoPorCidade(String cidade) {
         return chamadoRepository.findChamadoByEnderecoCidadeIgnoreCase(cidade);
+    }
+
+    public void deletarChamado(Long id) {
+        Chamado chamado = buscarChamadoPorId(id);
+        if (!StatusChamado.RESOLVIDO.equals(chamado.getStatusAtual())) {
+            throw new ErroAoDeletarChamadoException("Chamado só pode ser excluído se estiver com status RESOLVIDO.");
+        }
+
+        chamadoRepository.delete(chamado);
     }
 }

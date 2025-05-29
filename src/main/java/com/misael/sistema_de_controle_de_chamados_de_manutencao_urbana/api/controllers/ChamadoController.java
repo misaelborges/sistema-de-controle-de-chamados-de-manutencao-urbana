@@ -11,6 +11,7 @@ import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.se
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -91,5 +92,11 @@ public class ChamadoController {
         }
 
         return chamadoResponse;
+    }
+
+    @DeleteMapping("/deletarChamado/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarChamado(@PathVariable Long id) {
+        chamadoService.deletarChamado(id);
     }
 }
