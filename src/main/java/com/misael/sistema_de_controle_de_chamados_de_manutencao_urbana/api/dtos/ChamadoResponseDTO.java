@@ -11,8 +11,10 @@ public class ChamadoResponseDTO {
     private String descricao;
     private EnderecoResponseDTO endereco;
     private LocalDateTime dataAbertura;
+    private LocalDateTime dataAtuaizacao;
     private StatusChamado statusAtual;
     private CategoriaTipo categoria;
+    private String comentarioServidor;
 
     public ChamadoResponseDTO() {
     }
@@ -21,8 +23,10 @@ public class ChamadoResponseDTO {
         this.descricao = chamado.getDescricao();
         this.endereco = new EnderecoResponseDTO(chamado);
         this.dataAbertura = chamado.getDataAbertura();
+        this.dataAtuaizacao = chamado.getDataResolucao();
         this.statusAtual = chamado.getStatusAtual();
         this.categoria = chamado.getCategoria();
+        this.comentarioServidor = chamado.getComentarioServidor();
     }
 
     public String getDescricao() {
@@ -49,6 +53,14 @@ public class ChamadoResponseDTO {
         this.dataAbertura = dataAbertura;
     }
 
+    public LocalDateTime getDataAtuaizacao() {
+        return dataAtuaizacao;
+    }
+
+    public void setDataAtuaizacao(LocalDateTime dataAtuaizacao) {
+        this.dataAtuaizacao = dataAtuaizacao;
+    }
+
     public StatusChamado getStatusAtual() {
         return statusAtual;
     }
@@ -63,5 +75,13 @@ public class ChamadoResponseDTO {
 
     public void setCategoria(CategoriaTipo categoria) {
         this.categoria = categoria;
+    }
+
+    public String getComentarioServidor() {
+        return comentarioServidor;
+    }
+
+    public void setComentarioServidor(String comentarioServidor) {
+        this.comentarioServidor = comentarioServidor;
     }
 }
