@@ -1,5 +1,6 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.controllers;
 
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoAtualizarStatusDTO;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoRequestDTO;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoResponseDTO;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoResumoResponseDTO;
@@ -42,6 +43,15 @@ public class ChamadoController {
     public ChamadoResponseDTO salvarChamado(@RequestBody @Valid ChamadoRequestDTO chamadoRequestDTO) {
         Chamado chamado = new Chamado(chamadoRequestDTO);
         chamadoService.salvarChamado(chamado);
+        return new ChamadoResponseDTO(chamado);
+    }
+
+    @PutMapping("/atualizarStatusChamado/{id}")
+    public ChamadoResponseDTO atualizarStatus(@PathVariable Long id, @RequestBody ChamadoAtualizarStatusDTO atualizacaoDTO) {
+
+        Chamado chamado = chamadoService.atualizarStatus(
+                id, atualizacaoDTO.getStatusChamado(), atualizacaoDTO.getComentarioServidor());
+
         return new ChamadoResponseDTO(chamado);
     }
 }

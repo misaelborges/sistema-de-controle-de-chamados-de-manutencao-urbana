@@ -3,6 +3,7 @@ package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.s
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoEncontrarChamadoException;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoSalvarChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.StatusChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.repositories.IChamadoRepository;
 import jakarta.validation.UnexpectedTypeException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,13 @@ public class ChamadoService {
 
     public List<Chamado> listarChamados() {
         return chamadoRepository.listarChamados();
+    }
+
+    public Chamado atualizarStatus(Long id, StatusChamado novoStatus, String comentarioServidor) {
+        Chamado chamadoExistente = buscarChamadoPorId(id);
+        chamadoExistente.setStatusAtual(novoStatus);
+        chamadoExistente.setComentarioServidor(comentarioServidor);
+
+        return chamadoRepository.save(chamadoExistente);
     }
 }
