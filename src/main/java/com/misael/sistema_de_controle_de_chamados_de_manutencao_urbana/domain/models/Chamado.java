@@ -83,7 +83,11 @@ public class Chamado {
     }
 
     public void setStatusAtual(StatusChamado statusAtual) {
-        this.statusAtual = statusAtual;
+        if (this.statusAtual.equals(StatusChamado.ABERTO)) {
+            this.statusAtual = StatusChamado.EM_ANDAMENTO;
+        } else if (this.statusAtual.equals(StatusChamado.EM_ANDAMENTO)) {
+            this.statusAtual = StatusChamado.RESOLVIDO;
+        }
     }
 
     public String getComentarioServidor() {
