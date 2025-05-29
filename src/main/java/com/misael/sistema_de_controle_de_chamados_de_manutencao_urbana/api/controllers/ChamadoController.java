@@ -80,4 +80,16 @@ public class ChamadoController {
 
         return chamadoResponse;
     }
+
+    @GetMapping("/filtrarChamadoPorCidade")
+    public List<ChamadoResumoResponseDTO> filtrarChamadoPorCidade(@RequestParam String cidade) {
+        List<Chamado> listaChamadoFiltrado = chamadoService.filtrarChamadoPorCidade(cidade);
+        List<ChamadoResumoResponseDTO> chamadoResponse = new ArrayList<>();
+
+        for (Chamado chamado : listaChamadoFiltrado) {
+            chamadoResponse.add(new ChamadoResumoResponseDTO(chamado));
+        }
+
+        return chamadoResponse;
+    }
 }

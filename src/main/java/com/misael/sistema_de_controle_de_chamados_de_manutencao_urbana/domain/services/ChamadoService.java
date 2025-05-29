@@ -51,4 +51,8 @@ public class ChamadoService {
     public List<Chamado> filtrarChamadoPorBairro(String bairro) {
         return chamadoRepository.findChamadoByEnderecoBairroIgnoreCase(bairro);
     }
+
+    public List<Chamado> filtrarChamadoPorCidade(String cidade) {
+        return chamadoRepository.findChamadoByEnderecoCidadeIgnoreCase(cidade);
+    }
 }

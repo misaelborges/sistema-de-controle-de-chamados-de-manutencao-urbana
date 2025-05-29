@@ -18,4 +18,7 @@ public interface IChamadoRepository extends JpaRepository<Chamado, Long> {
     List<Chamado> findChamadoBystatusAtual(StatusChamado statusChamado);
 
     List<Chamado> findChamadoByEnderecoBairroIgnoreCase(String bairro);
+
+    List<Chamado> findChamadoByEnderecoCidadeIgnoreCase(String cidade);
+
 }
