@@ -5,6 +5,7 @@ import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoResponseDTO;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoResumoResponseDTO;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Endereco;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.StatusChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.services.ChamadoService;
 import jakarta.validation.Valid;
@@ -59,6 +60,18 @@ public class ChamadoController {
     @GetMapping("/filtrarStatusChamado")
     public List<ChamadoResumoResponseDTO> filtrarStatusChamado(@RequestParam StatusChamado statusChamado) {
         List<Chamado> listaChamadoFiltrado = chamadoService.filtrarPorStatusChamado(statusChamado);
+        List<ChamadoResumoResponseDTO> chamadoResponse = new ArrayList<>();
+
+        for (Chamado chamado : listaChamadoFiltrado) {
+            chamadoResponse.add(new ChamadoResumoResponseDTO(chamado));
+        }
+
+        return chamadoResponse;
+    }
+
+    @GetMapping("/filtrarChamadoPorBairro")
+    public List<ChamadoResumoResponseDTO> filtrarChamadoPorBairro(@RequestParam String bairro) {
+        List<Chamado> listaChamadoFiltrado = chamadoService.filtrarChamadoPorBairro(bairro);
         List<ChamadoResumoResponseDTO> chamadoResponse = new ArrayList<>();
 
         for (Chamado chamado : listaChamadoFiltrado) {

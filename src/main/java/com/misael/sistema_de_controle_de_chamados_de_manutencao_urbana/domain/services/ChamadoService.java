@@ -3,6 +3,7 @@ package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.s
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoEncontrarChamadoException;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.exceptions.ErroAoSalvarChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Endereco;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.StatusChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.repositories.IChamadoRepository;
 import jakarta.validation.UnexpectedTypeException;
@@ -45,5 +46,9 @@ public class ChamadoService {
 
     public List<Chamado> filtrarPorStatusChamado(StatusChamado statusChamado) {
         return chamadoRepository.findChamadoBystatusAtual(statusChamado);
+    }
+
+    public List<Chamado> filtrarChamadoPorBairro(String bairro) {
+        return chamadoRepository.findChamadoByEnderecoBairroIgnoreCase(bairro);
     }
 }
