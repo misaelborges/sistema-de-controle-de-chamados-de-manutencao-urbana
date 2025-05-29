@@ -42,4 +42,8 @@ public class ChamadoService {
 
         return chamadoRepository.save(chamadoExistente);
     }
+
+    public List<Chamado> filtrarPorStatusChamado(StatusChamado statusChamado) {
+        return chamadoRepository.findChamadoBystatusAtual(statusChamado);
+    }
 }
