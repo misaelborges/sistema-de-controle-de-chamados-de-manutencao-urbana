@@ -1,7 +1,6 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.repositories;
 
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Endereco;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.StatusChamado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +19,7 @@ public interface IChamadoRepository extends JpaRepository<Chamado, Long> {
     List<Chamado> findChamadoByEnderecoBairroIgnoreCase(String bairro);
 
     List<Chamado> findChamadoByEnderecoCidadeIgnoreCase(String cidade);
+
+    Long countByStatusAtual(StatusChamado statusChamado);
 
 }

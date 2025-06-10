@@ -65,4 +65,8 @@ public class ChamadoService {
 
         chamadoRepository.delete(chamado);
     }
+
+    public Long contarChamadosPorStatus(StatusChamado statusChamado) {
+        return chamadoRepository.countByStatusAtual(statusChamado);
+    }
 }

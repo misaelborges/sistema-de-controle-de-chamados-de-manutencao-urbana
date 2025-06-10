@@ -1,18 +1,13 @@
 package com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.controllers;
 
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoAtualizarStatusDTO;
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoRequestDTO;
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoResponseDTO;
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.ChamadoResumoResponseDTO;
+import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.api.dtos.*;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Chamado;
-import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.Endereco;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.models.StatusChamado;
 import com.misael.sistema_de_controle_de_chamados_de_manutencao_urbana.domain.services.ChamadoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -108,5 +103,12 @@ public class ChamadoController {
 
         chamadoService.salvarChamado(chamado);
         return new ChamadoResumoResponseDTO(chamado);
+    }
+
+    @GetMapping("/contarPorStatus")
+    public ChamadoStatusCountDTO Chamada(@RequestParam StatusChamado statusChamado) {
+        Long contadorChamado = chamadoService.contarChamadosPorStatus(statusChamado);
+        return new ChamadoStatusCountDTO(statusChamado, contadorChamado);
+
     }
 }
